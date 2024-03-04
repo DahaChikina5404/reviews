@@ -22,32 +22,34 @@ h1 {
     padding: 50px 60px;
 }
 
-.main {
+.main_slider {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
 
-    .image {
-        width: 70px;
-        height: 80px;
-    }
+.image {
+    width: 70px;
+    height: 80px;
 }
 
 .reviews {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
+    gap: 2;
+    border: 1px solid gray;
     box-shadow: 10px 10px 20px gray;
-    padding: 15px;
+    border-radius: 5%;
+    padding: 10px;
+    margin: 10px 0 10px 0;
     
     .foto {
         border-radius: 50%;
         height: 300px;
         width: 280px;
-        box-shadow: 20px 10px 30px #bf2247;
     }
 
     p {

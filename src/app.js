@@ -35,64 +35,51 @@ let reviews = [
     },
 ]
 
-// Динамическое добавление объектов из масива
+let currentIndex = 0  // текущий отзыв
 
 const reviewsList = document.getElementById('container__with_reviews')
 
-function renderReviews() {
+function renderReviews() {   // Динамическое добавление объектов из масива
+
     reviewsList.innerHTML = ''
 
-    reviews.forEach((review) => {
-        reviewsList.innerHTML += `
-            <div class="reviews">
-                <p>${review.assessment}</p>
-                <p>${review.text}</p>
-                <p>${review.name}</p>
-                <img class="foto" src="${review.image}"/> 
-                <p>${review.dateReview}</p>
-                <p>${review.dateBuying}</p>
-                <p>${review.city}</p>
-            </div>`
-    })
+        reviews.forEach((review) => {
+            reviewsList.innerHTML += `
+                <div class="reviews">
+                    <p>${review.assessment}</p>
+                    <p>${review.text}</p>
+                    <p>${review.name}</p>
+                    <img class="foto" src="${review.image}"/> 
+                    <p>${review.dateReview}</p>
+                    <p>${review.dateBuying}</p>
+                    <p>${review.city}</p>
+                </div>`
+        })
 }
 
-renderReviews()
+function showPrevSlide() {
+    if (currentIndex <= 0) {
+        currentIndex = reviews.length - 1
+    } else {
+        currentIndex = currentIndex - 1
+    }
+    renderReviews()
+}
 
+function showNextSlide() {
+    if (currentIndex >= reviews.length - 1) {
+        currentIndex = reviews.length - reviews.length
+    } else {
+        currentIndex = currentIndex + 1
+    }
+    renderReviews()
+}
 
-// const prevButton = document.getElementById('left')
-// const nextButton = document.getElementById('right')
+const prevButton = document.getElementById('prev-button')  // кнопка назад
+prevButton.addEventListener('click', showPrevSlide)
 
-// document.addEventListener('clic', () => {
-  
-// })
+const nextButton = document.getElementById('next-button')  // кнопка вперед
+nextButton.addEventListener('click', showNextSlide)
 
-
-
-
-
-// const slider = document.querySelector('.slider');
-// const prevButton = document.querySelector('.prev-button');
-// const nextButton = document.querySelector('.next-button');
-// const slides = Array.from(slider.querySelectorAll('img'));
-// const slideCount = slides.length;
-// let slideIndex = 0;
-
-// prevButton.addEventListener('click', () => {
-//   slideIndex = (slideIndex - 1 + slideCount) % slideCount;
-//   slide();
-// });
-
-// nextButton.addEventListener('click', () => {
-//   slideIndex = (slideIndex + 1) % slideCount;
-//   slide();
-// });
-
-// const slide = () => {
-//   const imageWidth = slider.clientWidth;
-//   const slideOffset = -slideIndex * imageWidth;
-//   slider.style.transform = `translateX(${slideOffset}px)`;
-// }
-
-// window.addEventListener('load', () => {
-//   slide();
-// });
+// const randomButton = document.getElementById('random_review') // случайный отзыв
+// randomButton.addEventListener('click', showRandomSlide)
